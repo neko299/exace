@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Prof:</strong>
+  <%= @user.prof %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @user.image %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Remember token:</strong>
+  <%= @user.remember_token %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<h1>
+  <%= profile_image_for @user %>
+  <%= @user.name %>
+</h1>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= profile_image_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <% if @user.talks.any? %>
+      <h3>Talks (<%= @user.talks.count %>)</h3>
+      <ol class="microposts">
+        <%= render @talks %>
+      </ol>
+      <%= will_paginate @talks %>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+<h2>Talk </h2>
+<% @user.talk.each do |talk| %>
+    <div>
+        <%= talk.content %>
+    </div>
+    <hr>
+<% end %>
